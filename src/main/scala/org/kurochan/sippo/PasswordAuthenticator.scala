@@ -6,6 +6,7 @@ import org.apache.sshd.server.{PasswordAuthenticator => PasswordAuthenticatorOri
 object PasswordAuthenticator extends PasswordAuthenticatorOrig {
 
   def authenticate(username: String, password: String, session: ServerSession): Boolean = {
+    println(s"User: ${username} Password: ${password}")
     true
   }
 }
