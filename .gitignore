@@ -1,3 +1,5 @@
+hostkey.ser
+
 # SBT
 dist/*
 boot/
