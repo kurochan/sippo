@@ -1,24 +1,38 @@
 <configuration>
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%d{MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <logger name="chapters.configuration" level="INFO"/>
+    <logger name="consoleLogger" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="consoleAppender"/>
+    </logger>
 
-    <root level="debug">
-        <appender-ref ref="STDOUT" />
+    <appender name="appLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/app.log.%d{yyyy-MM}.gz</fileNamePattern>
+            <maxHistory>1</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="appLogAppender" />
     </root>
 
     <appender name="sshLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>logs/ssh.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/ssh.log.%d{yy-MM-dd-HH}.gz</fileNamePattern>
-            <maxHistory>24</maxHistory>
+            <fileNamePattern>logs/ssh.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <maxHistory>1</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>%msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}\t%msg%n</pattern>
         </encoder>
     </appender>
 
