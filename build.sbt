@@ -15,3 +15,4 @@ libraryDependencies ++= Seq (
 libraryDependencies ~= { _.map(_.exclude("org.slf4j", "slf4j-jdk14")) }
 
 mainClass in assembly := Some("org.kurochan.sippo.Boot")
+jarName in assembly := { s"${name.value}-${version.value}.jar" }
