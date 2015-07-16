@@ -1,4 +1,5 @@
 hostkey.ser
+logs/
 
 # SBT
 dist/*
