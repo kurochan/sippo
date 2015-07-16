@@ -10,4 +10,26 @@
     <root level="debug">
         <appender-ref ref="STDOUT" />
     </root>
+
+    <appender name="sshLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/ssh.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/ssh.log.%d{yy-MM-dd-HH}.gz</fileNamePattern>
+            <maxHistory>24</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="AsyncSshLogAppender" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>500</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <appender-ref ref="sshLogAppender"/>
+    </appender>
+
+    <logger name="sshLogger" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="AsyncSshLogAppender"/>
+    </logger>
 </configuration>
