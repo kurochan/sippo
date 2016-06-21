@@ -22,11 +22,5 @@ $ sbt compile
 $ sbt assembly
 ```
 
-## Features
-* [Scala](http://www.scala-lang.org)
-* SBT plugins
-  * [gen-idea](https://github.com/mpeltonen/sbt-idea)
-  * [eclipse](https://github.com/typesafehub/sbteclipse)
-
 ## Prerequisities
 * [SBT](http://www.scala-sbt.org)
