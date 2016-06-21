@@ -7,11 +7,14 @@ SSH Honeypot Written in Scala.
 
 ```bash
 $ mkdir sippo
-$ wget https://github.com/kurochan/sippo/releases/download/v0.1/sippo-0.1-SNAPSHOT.jar
-$ java -jar sippo-0.1-SNAPSHOT.jar
-```
+$ wget https://github.com/kurochan/sippo/releases/download/v0.1.0/sippo-0.1.0.jar
 
-* startup with port 10022 by default
+# startup with port 10022 by default
+$ java -jar sippo-0.1-SNAPSHOT.jar
+
+# or specifying listening port
+$ java -jar sippo-0.1-SNAPSHOT.jar 12345
+```
 
 ## Build
 

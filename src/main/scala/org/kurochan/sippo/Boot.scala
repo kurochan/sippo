@@ -9,13 +9,14 @@ object Boot {
   def main(args: Array[String]) {
     val console = LoggerFactory.getLogger("consoleLogger")
     val sshd = SshServer.setUpDefaultServer
+    val port = args.headOption.map(_.toInt).getOrElse(10022)
 
-    sshd.setPort(10022)
+    sshd.setPort(port)
     sshd.setKeyPairProvider(new SimpleGeneratorHostKeyProvider("hostkey.ser"))
     sshd.setPasswordAuthenticator(PasswordAuthenticator)
     sshd.setShellFactory(new CommandFactory)
     sshd.start
 
-    console.info("SSH Honeypot Started.")
+    console.info(s"SSH Honeypot Started port ${port}.")
   }
 }
